@@ -4,80 +4,10 @@
 //     (c) 2009-2018 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
 //     Underscore may be freely distributed under the MIT license.
 
-/* Guide for Rewriting Source 
- * go for the 'easy' part first and when you digested all 'easy' parts, then the 'hard' part will be easier natually
- * check your expectation of what the function does and write down args and returns details by reading docs and experimenting docs examples
- * debug docs examples (at 13:30-17:00 https://watchandcode.com/courses/77710/lectures/10848372)
- * when reading the source (internal functions in particular), figure out the logic structure (different scenarios) of the code (e.g., cb has 4-5 scenarios) to have a basic understanding of what the code does, (if it is general internal function, then only focus on the part you need to run at the moment, e.g., when reading _.map, we shall only focus the scenario when 'iteratee' is a function in 'cb' ) https://watchandcode.com/courses/77710/lectures/11266132
- * internal functions (refactoring) to include many scenarios could have many edge cases, but it can be confusing and unnecessary really https://watchandcode.com/courses/77710/lectures/11266421
- * bringing in all nested internal function definitions within a function or method to ease the understanding, e.g., bring shallowProperty, getLength to isArrayLike (14:00~ https://watchandcode.com/courses/77710/lectures/11250330)
- * exhaustively utilize debugger and console to understand source code and concepts rather than googling (5:00- https://watchandcode.com/courses/77710/lectures/11250330)
- * use blame & issues to figure out why code was written the way it was https://watchandcode.com/courses/77710/lectures/11266130, such as why use `switch` and `.call` in `optimizeCb`
- * remove all nested internal functions (shallowProperty, getLength) by rewriting the core logic buried under those nested functions for the particular function under investigation (e.g., isArrayLike) (at 27:00~ https://watchandcode.com/courses/77710/lectures/11265427)
- * W&C style for rewriting, always use
- *    1. === (not ==) 
- *    2. if else (not ternary)
- *    3. swift-like naming convention
- *    4. no other nested functions inside a function ??? (how to say it precisely?)
- * use docs and tests to guarantee the rewriting is correct 
- */ 
-
 
 
 (function() {
   
-  
-  /* properly commented methods
-    
-    unnecessary internal functions
-      cb
-      optimizeCb
-
-    internal variables
-      root
-      previousUnderscore
-      ArrayProto
-      ObjProto
-      SymbolProto
-      
-      
-    internal function
-      _(obj)
-      push (ArrayProto.push)
-      slice (ArrayProto.slice)
-      toString (ObjProto.toString)
-      hasOwnProperty (ObjProto.hasOwnProperty)
-      nativeIsArray (Array.isArray)
-      nativeKeys (Object.keys)
-      nativeCreate (Object.create)
-
-    internal functions made public by me
-      _.has
-      _.shallowProperty
-      _.deepGet 
-      _.restArguments
-      _.isArrayLike
-      _.createPredicateIndexFinder
-
-    official underscore methods
-      _.property
-      _.each
-      _.keys
-      _.map
-      _.reduce (createReduce, _.reduceRight)
-      _.find, _.findIndex, _.findLastIndex, createPredicateIndexFinder
-      
-
-    todo: tests for internal functions made public are needed
-     
-  */ 
-
-
-
-    // Establish the root object, `window` (`self`) in the browser, `global`
-    // on the server, or `this` in some virtual machines. We use `self`
-    // instead of `window` for `WebWorker` support.
-    
 
   /**
    * **Wrapper** to organize all internal variables and functions inside
@@ -141,12 +71,23 @@
    */
   internalDependencies.hasOwnProperty = hasOwnProperty = ObjProto.hasOwnProperty;
 
-  // All **ECMAScript 5** native function implementations that we hope to use
-  // are declared here.
+
   var nativeIsArray = Array.isArray;
   var nativeKeys = Object.keys;
   var nativeCreate = Object.create;
 
+  /**
+   * nativeIsArray = Array.isArray;
+   */
+  internalDependencies.nativeIsArray = nativeIsArray;
+  /**
+   * nativeKeys = Object.keys;
+   */
+  internalDependencies.nativeKeys = nativeKeys;
+  /**
+   * nativeCreate = Object.create;
+   */
+  internalDependencies.nativeCreate = nativeCreate; 
   
   // OFFICIAL: Naked function reference for surrogate-prototype-swapping.
   /**
@@ -161,9 +102,9 @@
   internalFunctions.Ctor = Ctor = function(){};
 
   /** 
-   * create an instance of object `_` and store `obj` as a property `_wrapped: obj`
-   * @param obj
-   * @return obj _ {_wrapped: obj}
+   * **return an object `_` with property `_wrapped: obj`**
+   * @param {dynamic} obj
+   * @returns {object} obj _ {_wrapped: obj}
    */ 
   internalFunctions._ = function(obj) {
     if (obj instanceof internalFunctions._) return obj;
@@ -175,19 +116,9 @@
   var _ = internalFunctions._;
   
 
-
-  
-
-    // OFFICIAL
-    // Export the Underscore object for Node.js, with
-    // backwards-compatibility for their old module API. If we're in
-    // the browser, add `_` as a global object.
-    // (`nodeType` is checked to ensure that `module`
-    // and `exports` are not HTML elements.)
-
   /*
-   * @private 
-   *  export `_` to environments like old node, current node, or just browser
+   * How to export _ in different environments
+   * export `_` to environments like old node, current node, or just browser
    * debugger;
   */
   if (typeof exports != 'undefined' && !exports.nodeType) {
@@ -202,18 +133,26 @@
   // Current version.
   _.VERSION = '1.9.1';
 
-  //  OFFICIAL
-  //  Internal function that returns an efficient (for current engines) version
-  //  of the passed-in callback, to be repeatedly applied in other Underscore
-  //  functions. 
   
   
   /** 
-   * **Increase performance** of callback execution by **prioritizing** `.call` over `.apply`
+   * **Increase performance of callback execution by prioritizing `.call` over `.apply`**
    * @param {function} func callback func
    * @param {object} context thisArg, usually an object
    * @param {number} argCount a number that count args for callback function
-   * @returns a function
+   * @returns {function} a function whose execution will run callback efficiently with proper context
+   * @example
+   * // There are 5 ways of calling this function
+   * optimizeCb(func); // => func
+   * optimizeCb(func, context); 
+   * // => return function(value, index, collection) { return func.call(context, value, index, collection);};
+   * optimizeCb(func, context, 3); // return the same thing as above
+   * optimizeCb(func, context, 1); 
+   * // => return function(value) {return func.call(context, value);};
+   * optimizeCb(func, context, 4); 
+   * // => return function(accumulator, value, index, collection) { return func.call(context, accumulator, value, index, collection);};
+   * optimizeCb(func, context, >4); 
+   * // => function() {return func.apply(context, arguments);};
    */
   internalFunctions.optimizeCb = function(func, context, argCount) {
     if (context === void 0) return func;
@@ -241,18 +180,14 @@
   
   var builtinIteratee;
 
-  //OFFICIAL
-  // An internal function to generate callbacks that can be applied to each
-  // element in a collection, returning the desired result — either `identity`,
-  // an arbitrary callback, a property matcher, or a property accessor.
-    
+  
   
   /** 
    * **CallbackTransformer** : Because we want a method/callback to apply to any type, array, arrayLike, object and even nested version of them, so the callback has to adjust itself accordingly.
    * @param {dynamics} value the value's typeof determines which callback to return
    * @param {object} context the object this inside the callback will refer to
    * @param {number} argCount number of args the callback has
-   * @returns a callback or a callback execution
+   * @returns {function} a callback or a callback execution (still return a callback)
    */
   internalFunctions.cb = function(value, context, argCount) {
     /* when current _.iteratee is not equal to builtinIteratee, it means current _.iteratee is a user tailored function which is a different callback from the above ones. */

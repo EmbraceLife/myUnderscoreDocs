@@ -112,6 +112,24 @@
                         .hasOwnProperty
                       </a></li>
                     
+                      <li><a
+                        href='#internaldependenciesnativeisarray'
+                        class='regular pre-open'>
+                        .nativeIsArray
+                      </a></li>
+                    
+                      <li><a
+                        href='#internaldependenciesnativekeys'
+                        class='regular pre-open'>
+                        .nativeKeys
+                      </a></li>
+                    
+                      <li><a
+                        href='#internaldependenciesnativecreate'
+                        class='regular pre-open'>
+                        .nativeCreate
+                      </a></li>
+                    
                     </ul>
                   
                   
@@ -156,6 +174,12 @@
                         href='#internalfunctionscb'
                         class='regular pre-open'>
                         .cb
+                      </a></li>
+                    
+                      <li><a
+                        href='#internalfunctionsgroup'
+                        class='regular pre-open'>
+                        .group
                       </a></li>
                     
                     </ul>
@@ -402,16 +426,6 @@
                   href='#reducer'
                   class="">
                   reducer
-                  
-                </a>
-                
-                </li>
-              
-                
-                <li><a
-                  href='#group'
-                  class="">
-                  group
                   
                 </a>
                 
@@ -954,6 +968,147 @@
       </div>
     </div>
   
+    <div class='border-bottom' id='internaldependenciesnativeisarray'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>nativeIsArray</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>nativeIsArray = Array.isArray;</p>
+
+    <div class='pre p1 fill-light mt0'>nativeIsArray</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='internaldependenciesnativekeys'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>nativeKeys</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>nativeKeys = Object.keys;</p>
+
+    <div class='pre p1 fill-light mt0'>nativeKeys</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='internaldependenciesnativecreate'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>nativeCreate</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>nativeCreate = Object.create;</p>
+
+    <div class='pre p1 fill-light mt0'>nativeCreate</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
 </div>
 
   
@@ -1067,9 +1222,9 @@
 
   
 
-  <p>create an instance of object <code>_</code> and store <code>obj</code> as a property <code>_wrapped: obj</code></p>
+  <p><strong>return an object <code>_</code> with property <code>_wrapped: obj</code></strong></p>
 
-    <div class='pre p1 fill-light mt0'>_(obj: any): any</div>
+    <div class='pre p1 fill-light mt0'>_(obj: dynamic): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></div>
   
   
 
@@ -1086,7 +1241,7 @@
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>obj</span> <code class='quiet'>(any)</code>
+            <span class='code bold'>obj</span> <code class='quiet'>(dynamic)</code>
 	    
           </div>
           
@@ -1100,7 +1255,7 @@
   
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code>any</code>:
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></code>:
         obj _ {_wrapped: obj}
 
       
@@ -1135,9 +1290,9 @@
 
   
 
-  <p><strong>Increase performance</strong> of callback execution by <strong>prioritizing</strong> <code>.call</code> over <code>.apply</code></p>
+  <p><strong>Increase performance of callback execution by prioritizing <code>.call</code> over <code>.apply</code></strong></p>
 
-    <div class='pre p1 fill-light mt0'>optimizeCb(func: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">function</a>, context: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>, argCount: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): any</div>
+    <div class='pre p1 fill-light mt0'>optimizeCb(func: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">function</a>, context: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>, argCount: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">function</a></div>
   
   
 
@@ -1187,8 +1342,8 @@
   
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code>any</code>:
-        a function
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">function</a></code>:
+        a function whose execution will run callback efficiently with proper context
 
       
     
@@ -1196,6 +1351,22 @@
 
   
 
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'><span class="hljs-comment">// There are 5 ways of calling this function</span>
+optimizeCb(func); <span class="hljs-comment">// =&gt; func</span>
+optimizeCb(func, context); 
+<span class="hljs-comment">// =&gt; return function(value, index, collection) { return func.call(context, value, index, collection);};</span>
+optimizeCb(func, context, <span class="hljs-number">3</span>); <span class="hljs-comment">// return the same thing as above</span>
+optimizeCb(func, context, <span class="hljs-number">1</span>); 
+<span class="hljs-comment">// =&gt; return function(value) {return func.call(context, value);};</span>
+optimizeCb(func, context, <span class="hljs-number">4</span>); 
+<span class="hljs-comment">// =&gt; return function(accumulator, value, index, collection) { return func.call(context, accumulator, value, index, collection);};</span>
+optimizeCb(func, context, &gt;<span class="hljs-number">4</span>); 
+<span class="hljs-comment">// =&gt; function() {return func.apply(context, arguments);};</span></pre>
+    
   
 
   
@@ -1222,9 +1393,9 @@
 
   
 
-  <p><strong>CallbackTransformer</strong> : Because we want a method/callback to apply to any type, array, arrayLike, object and even nested version of them, the callback has to adjust itself accordingly.</p>
+  <p><strong>CallbackTransformer</strong> : Because we want a method/callback to apply to any type, array, arrayLike, object and even nested version of them, so the callback has to adjust itself accordingly.</p>
 
-    <div class='pre p1 fill-light mt0'>cb(value: dynamics, context: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>, argCount: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): any</div>
+    <div class='pre p1 fill-light mt0'>cb(value: dynamics, context: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>, argCount: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">function</a></div>
   
   
 
@@ -1274,11 +1445,123 @@
   
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code>any</code>:
-        a callback or a callback execution
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">function</a></code>:
+        a callback or a callback execution (still return a callback)
 
       
     
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='internalfunctionsgroup'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>group(behavior, partition, obj, iteratee, context, key)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>group(behavior, partition) => [[...],[...]] or {...}
+1. create the returned container [[ ],[ ]], or { }, <code>result</code>
+2. callbackTransformer based on value of <code>iteratee</code>
+3. invoke callback on each element and get result <code>key</code>
+4. run <code>behavior</code> which sets rules for how <code>result</code> use <code>key</code> to store <code>value</code>
+5. return <code>result</code></p>
+
+    <div class='pre p1 fill-light mt0'>group(behavior: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">function</a>, partition: collection, obj: any, iteratee: any, context: any, key: any)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>behavior</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">function</a>)</code>
+	    a func
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>partition</span> <code class='quiet'>(collection)</code>
+	    act as a bool
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>obj</span> <code class='quiet'>(any)</code>
+	    arrayLike or object
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>iteratee</span> <code class='quiet'>(any)</code>
+	    value which triggers callbackTransformer in 
+<code>cb</code>
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>context</span> <code class='quiet'>(any)</code>
+	    thisArg
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>key</span> <code class='quiet'>(any)</code>
+	    result of element invocation on callback
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
   
 
   
@@ -1816,8 +2099,7 @@ Return the results of applying the iteratee to each element.</p>
   </div>
   
 
-  <p><em>.groupBy(obj,iteratee,context): <code>behavior</code> for `</em>.groupBy<code>is the following 1. if</code>result<code>does not have</code>key`, result[ key ] = [ value ];
-2. if it does, result[ key ].push(value)</p>
+  <p><strong>_.groupBy(obj, iteratee, context)</strong> implement in two steps: 1. gather an empty container, element, and callbackResultOfEachElement; 2. apply a function 'behavior' to organize element by callbackResultOfEachElement.</p>
 
     <div class='pre p1 fill-light mt0'>groupBy</div>
   
@@ -3043,119 +3325,6 @@ var log = <em>.bind(console.log, console);
           <div>
             <span class='code bold'>initial</span> <code class='quiet'>(any)</code>
 	    a bool, whether the initial memo is provided by the user
-
-          </div>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-          
-        
-          
-          <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    <h3 class='fl m0' id='group'>
-      group
-    </h3>
-    
-    
-  </div>
-  
-
-  <p>group(behavior, partition) => [[...],[...]] or {...}
-1. create the returned container [[ ],[ ]], or { }, <code>result</code>
-2. callbackTransformer based on value of <code>iteratee</code>
-3. invoke callback on each element and get result <code>key</code>
-4. run <code>behavior</code> which sets rules for how <code>result</code> use <code>key</code> to store <code>value</code>
-5. return <code>result</code></p>
-
-    <div class='pre p1 fill-light mt0'>group(behavior: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">function</a>, partition: collection, obj: any, iteratee: any, context: any, key: any)</div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>behavior</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">function</a>)</code>
-	    a func
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>partition</span> <code class='quiet'>(collection)</code>
-	    act as a bool
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>obj</span> <code class='quiet'>(any)</code>
-	    arrayLike or object
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>iteratee</span> <code class='quiet'>(any)</code>
-	    value which triggers callbackTransformer in 
-<code>cb</code>
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>context</span> <code class='quiet'>(any)</code>
-	    thisArg
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>key</span> <code class='quiet'>(any)</code>
-	    result of element invocation on callback
 
           </div>
           
