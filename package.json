@@ -5,7 +5,7 @@
     "documentation": "^12.1.2"
   },
   "scripts": {
-    "docDev": "documentation serve --watch underscore-commented.js",
-    "docHtml": "documentation build underscore-commented.js -f html -o docs"
+    "docDev": "documentation serve --watch --github underscore-commented.js",
+    "docHtml": "documentation build underscore-commented.js --github -f html -o docs"
   }
 }
